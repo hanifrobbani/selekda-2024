@@ -117,7 +117,9 @@ body {
     color: white;
     border-radius: 20px;
     width: 200px;
-    height: 30px;
+    height: 40px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 /* img hero */
@@ -132,7 +134,7 @@ body {
 }
 .black-box{
     width: 200px;
-    bottom: 40%;
+    bottom: 50%;
     left: -15%;
     height: 200px;
     background-color: black;
@@ -140,7 +142,7 @@ body {
 }
 .gray-box{
     width: 150px;
-    bottom: -5%;
+    bottom: -10%;
     left: 20%;
     height: 150px;
     background-color: gray;
