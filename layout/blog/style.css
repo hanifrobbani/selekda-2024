@@ -429,11 +429,16 @@ footer .box1 {
     gap: 3rem;
     font-size: 18px;
 }
+.deskripsi-detail p{
+    font-size: 18px;
+    color: gray;
+}
 .user-detail-blog .date{
     font-style: italic;
 }
 .img-detail-blog{
     width: 700px;
+    border-radius: 12px;
 }
 
 
