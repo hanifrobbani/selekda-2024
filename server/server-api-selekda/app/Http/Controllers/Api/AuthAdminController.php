@@ -39,7 +39,7 @@ class AuthAdminController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'username' => 'required|string|max:255',
-            'email' => 'required|string|max:255|unique:admin',
+            'email' => 'required|string|max:255|unique:admins',
             'password' => 'required|string|min:4',
 
         ]);
