@@ -132,6 +132,11 @@ body {
   height: 40px;
   font-size: 16px;
   cursor: pointer;
+  transition: .2s linear;
+}
+.btn-hero-section:hover{
+    background-color: transparent;
+    color: black;
 }
 
 /* img hero */
@@ -212,6 +217,13 @@ body {
   max-width: 300px;
   border: 2px solid gray;
   border-radius: 16px;
+  transition: .1s linear;
+}
+.container-card:hover{
+    scale: 1.1;
+}
+.box-detail a:hover{
+    font-weight: bold;
 }
 
 .card-deskripsi {
@@ -239,6 +251,7 @@ body {
 .box-detail a {
   margin-bottom: 15px;
   font-size: 14px;
+  transition: .2s linear;
   font-style: italic;
   text-decoration: underline;
   color: rgb(19, 19, 19);
@@ -333,6 +346,7 @@ footer .box1 {
 }
 .icon-sosmed .box-sosmed {
   width: 50px;
+  cursor: pointer;
   border-radius: 100%;
   display: flex;
   justify-content: center;
@@ -384,12 +398,54 @@ footer .box1 {
     color: white;
 }
 
+
+/* Bagian detail blog */
+.main-detail{
+    max-width: 80rem;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.container-detail{
+    max-width: 500px;
+}
+.container-detail button{
+    width: 130px;
+    height: 40px;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 8px;
+    background-color: black;
+    color: white;
+}
+.container-detail h1{
+    font-size: 30px;
+    font-weight: bold;
+}
+.user-detail-blog{
+    display: flex;
+    gap: 3rem;
+    font-size: 18px;
+}
+.user-detail-blog .date{
+    font-style: italic;
+}
+.img-detail-blog{
+    width: 700px;
+}
+
+
 @media only screen and (max-width: 768px) {
     /* home */
     .hero-section{
         justify-content: center;
     }
     .gray-box, .black-box{
+        display: none;
+    }
+    .list-nav a{
         display: none;
     }
   }
