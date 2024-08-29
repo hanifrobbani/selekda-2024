@@ -28,7 +28,11 @@ class AuthAdminController extends Controller
             $token = $user->createToken('adminToken')->plainTextToken;
 
             // Mengembalikan respon sukses dengan token
-            return response()->json(['token' => $token]);
+            return response()->json([
+                'data' => $user,
+                'access_token' => $token,
+                'token_type' => 'Bearer'
+            ]);
         }
 
         // Jika autentikasi gagal, kembalikan pesan error
@@ -60,6 +64,17 @@ class AuthAdminController extends Controller
             'data' => $user,
             'access_token' => $token,
             'token_type' => 'Bearer'
+        ]);
+    }
+
+    public function logout(Request $request)
+    {
+        $admin = $request->user();
+
+        $admin->tokens()->delete();
+
+        return response()->json([
+            'message' => 'Logout success'
         ]);
     }
 }
