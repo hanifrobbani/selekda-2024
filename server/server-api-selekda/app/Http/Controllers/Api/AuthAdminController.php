@@ -25,7 +25,7 @@ class AuthAdminController extends Controller
             // Mendapatkan user yang sudah terautentikasi
             $user = Auth::guard('admin')->user();
 
-            $token = $user->createToken('adminToken')->plainTextToken;
+            $token = $user->createToken('adminToken')->plainTextToken; //masih misteri mengapa errror
 
             // Mengembalikan respon sukses dengan token
             return response()->json([
@@ -76,9 +76,5 @@ class AuthAdminController extends Controller
         return response()->json([
             'message' => 'Logout success'
         ]);
-    }
-
-    public function update(Request $request){
-        
     }
 }

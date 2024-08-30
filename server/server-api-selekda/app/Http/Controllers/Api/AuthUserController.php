@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Resources\UserResource;
 
 class AuthUserController extends Controller
 {
@@ -67,6 +68,15 @@ class AuthUserController extends Controller
         Auth::user()->tokens()->delete();
         return response()->json([
             'message' => 'logout success'
+        ]);
+    }
+
+    public function show(User $user)
+    {
+        return response()->json([
+            'data' => new UserResource($user),
+            'message' => 'Data user found',
+            'success' => true
         ]);
     }
 }
