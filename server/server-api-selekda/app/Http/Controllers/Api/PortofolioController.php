@@ -75,10 +75,10 @@ class PortofolioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Portofolio $porto)
     {
         return response()->json([
-            'data' => new PortofolioResource($id),
+            'data' => new PortofolioResource($porto),
             'message' => 'Data post found',
             'success' => true
         ]);
@@ -133,9 +133,7 @@ class PortofolioController extends Controller
         $porto->delete();
 
         return response()->json([
-            'data' => [],
             'message' => 'Post deleted successfully',
-            'success' => true
         ]);
     }
 }
