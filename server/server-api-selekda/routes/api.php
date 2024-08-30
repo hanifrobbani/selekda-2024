@@ -25,4 +25,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/users', [\App\Http\Controllers\Api\AuthUserController::class, 'index']);
     Route::post('/logoutadmin', [\App\Http\Controllers\Api\AuthAdminController::class, 'logout']);
     Route::put('/updateadmin', [\App\Http\Controllers\Api\AuthAdminController::class, 'update']);
+
+    Route::resource('/porto', \App\Http\Controllers\Api\PortofolioController::class);
 });
