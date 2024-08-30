@@ -102,8 +102,8 @@ class BlogController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:155',
             'deskripsi' => 'required',
-            'author' => 'required|max:255',
             'tags' => 'required|max:255',
+            'author' => 'required|max:255',
             'image' => 'nullable|file'
         ]);
 
