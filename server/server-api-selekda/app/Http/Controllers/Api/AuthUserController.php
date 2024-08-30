@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
+
 
 class AuthUserController extends Controller
 {
@@ -95,14 +97,19 @@ class AuthUserController extends Controller
     public function update(Request $request, User $user)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'sometimes|required|string|max:255',
-            'date_birth' => 'sometimes|required|string',
-            'email' => 'sometimes|required|string|email|max:255',
-            'password' => 'sometimes|required|max:255',
-            'phone_number' => 'sometimes|required|string', //sometimes adalah sebuah validasi yang dimana ia mengecek apakah ada sebuah request atau tidak
+            'name' => 'required|string|max:255',
+            'email' => [
+                'required',
+                'string',
+                'email',
+                'max:255',
+                Rule::unique('users')->ignore($user->id),
+            ],
+            'date_birth' => 'required|string',
+            'phone_number' => 'required|string|max:15',
             'image' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
         ]);
-    
+
         if ($validator->fails()) {
             return response()->json([
                 'data' => [],
@@ -110,36 +117,34 @@ class AuthUserController extends Controller
                 'success' => false
             ]);
         }
-    
+
         // Jika ada gambar baru yang di-upload
         if ($request->hasFile('image')) {
             // Hapus gambar lama jika ada
             if ($user->image) {
                 Storage::delete('public/images/' . $user->image);
             }
-    
+
             // Simpan gambar baru
             $imageName = time() . '_' . $request->file('image')->getClientOriginalName();
             $request->file('image')->storeAs('public/images', $imageName);
-    
+
             // Update nama gambar baru
             $user->image = $imageName;
         }
-    
-        // Update data pengguna dengan data yang diberikan dalam request, jika ada
-        $user->name = $request->get('name', $user->name);
-        $user->email = $request->get('email', $user->email);
-        $user->password = $request->get('password', $user->password);
-        $user->date_birth = $request->get('date_birth', $user->date_birth);
-        $user->phone_number = $request->get('phone_number', $user->phone_number);
-    
-        $user->save();
-    
+
+        // Update data pengguna
+        $user->update([
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'date_birth' => $request->get('date_birth'),
+            'phone_number' => $request->get('phone_number'),
+        ]);
+
         return response()->json([
             'data' => new UserResource($user),
             'message' => 'User updated successfully',
             'success' => true
         ]);
     }
-    
 }
