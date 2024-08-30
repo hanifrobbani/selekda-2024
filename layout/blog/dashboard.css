@@ -8,6 +8,9 @@ body {
   padding: 0;
   scroll-behavior: smooth;
   height: 100vh;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 main {
   display: flex;
@@ -21,9 +24,27 @@ main {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
+.ul{
+    display: flex;
+    flex-direction: column;
+    margin-top: -30px;
+    gap: 1rem;
+    align-items: center;
+}
+.ul a{
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    list-style: none;
+    font-style: none;
+    text-decoration: none;
+}
 .img-sidebar{
-    width: 100px;
-    
+    width: 150px;
+    position: relative;
+    bottom: 4%;
+    margin: 0;
+    padding: 0;
 }
 .container {
   width: 100%;
