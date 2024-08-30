@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PortofolioResource;
 use Illuminate\Http\Request;
+use App\Models\Portofolio;
 
 class PortofolioController extends Controller
 {
@@ -12,7 +14,13 @@ class PortofolioController extends Controller
      */
     public function index()
     {
-        //
+        $data = Portofolio::latest()->get();
+
+        return response()->json([
+            'data' => PortofolioResource::collection($data),
+            'message' => 'Data portofolio found',
+            'success' => true
+        ]);
     }
 
     /**
