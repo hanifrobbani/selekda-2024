@@ -107,7 +107,7 @@ class AuthUserController extends Controller
             ],
             'date_birth' => 'required|string',
             'phone_number' => 'required|string|max:15',
-            'image' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
+            'image' => 'nullable|file|mimes:jpg,jpeg,png',
         ]);
 
         if ($validator->fails()) {
