@@ -1,0 +1,25 @@
+*{
+    box-sizing: border-box;
+}
+
+html, body{
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    height: 100vh;
+}
+main{
+    display: flex;
+}
+.sidebar{
+    width: 150px;
+    max-width: 200px;
+    background-color: #276fff;
+    height: 100vh;
+    overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+}
+.sidebar{
+    min-width: 500px;
+}
