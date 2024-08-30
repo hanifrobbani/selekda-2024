@@ -3,23 +3,23 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\PortofolioResource;
+use App\Http\Resources\BlogResource;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use App\Models\Portofolio;
+use App\Models\Blog;
 
-class PortofolioController extends Controller
+class BlogController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data = Portofolio::latest()->get();
+        $data = Blog::latest()->get();
 
         return response()->json([
-            'data' => PortofolioResource::collection($data),
-            'message' => 'Data portofolio found',
+            'data' => BlogResource::collection($data),
+            'message' => 'Data Blog found',
             'success' => true
         ]);
     }
@@ -41,6 +41,7 @@ class PortofolioController extends Controller
             'title' => 'required|string|max:155',
             'deskripsi' => 'required',
             'author' => 'required|max:255',
+            'tags' => 'required|max:255',
             'image' => 'nullable|file'
         ]);
 
@@ -59,15 +60,16 @@ class PortofolioController extends Controller
         }
 
 
-        $porto = Portofolio::create([
+        $blog = Blog::create([
             'title' => $request->get('title'),
             'deskripsi' => $request->get('deskripsi'),
             'author' => $request->get('author'),
+            'tags' => $request->get('tags'),
         ]);
 
         return response()->json([
-            'data' => new PortofolioResource($porto),
-            'message' => 'Portofolio created successfully.',
+            'data' => new BlogResource($blog),
+            'message' => 'Blog created successfully.',
             'success' => true
         ]);
     }
@@ -75,10 +77,10 @@ class PortofolioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Portofolio $porto)
+    public function show(Blog $blog)
     {
         return response()->json([
-            'data' => new PortofolioResource($porto),
+            'data' => new BlogResource($blog),
             'message' => 'Data post found',
             'success' => true
         ]);
@@ -95,12 +97,13 @@ class PortofolioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Portofolio $porto)
+    public function update(Request $request, Blog $blog)
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:155',
             'deskripsi' => 'required',
             'author' => 'required|max:255',
+            'tags' => 'required|max:255',
             'image' => 'nullable|file'
         ]);
 
@@ -112,14 +115,15 @@ class PortofolioController extends Controller
             ]);
         }
 
-        $porto->update([
+        $blog->update([
             'title' => $request->get('title'),
             'deskripsi' => $request->get('deskripsi'),
             'author' => $request->get('author'),
+            'tags' => $request->get('tags'),
         ]);
 
         return response()->json([
-            'data' => new PortofolioResource($porto),
+            'data' => new BlogResource($blog),
             'message' => 'Post updated successfully',
             'success' => true
         ]);
@@ -128,12 +132,12 @@ class PortofolioController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Portofolio $porto)
+    public function destroy(Blog $blog)
     {
-        $porto->delete();
+        $blog->delete();
 
         return response()->json([
-            'message' => 'Portofolio deleted successfully',
+            'message' => 'Blog deleted successfully',
         ]);
     }
 }

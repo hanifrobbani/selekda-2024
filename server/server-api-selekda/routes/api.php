@@ -23,4 +23,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/updateadmin', [\App\Http\Controllers\Api\AuthAdminController::class, 'update']);
 
     Route::resource('/porto', \App\Http\Controllers\Api\PortofolioController::class);
+    Route::resource('/blog', \App\Http\Controllers\Api\BlogController::class);
 });
