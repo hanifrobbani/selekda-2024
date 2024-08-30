@@ -77,4 +77,8 @@ class AuthAdminController extends Controller
             'message' => 'Logout success'
         ]);
     }
+
+    public function update(Request $request){
+        
+    }
 }
